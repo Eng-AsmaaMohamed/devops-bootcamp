@@ -16,3 +16,7 @@ A 30-day hands on journey to prepare for a Devops Engineer role.
 ## Main Project
 
 Automated web App Deployment
+
+## Day1 Status
+
+Completed DevOps fundamentals and Git/GitHub setup.
