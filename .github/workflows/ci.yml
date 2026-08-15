@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    runs_on: ubuntu_latest
+    runs-on: ubuntu-latest
 
   steps:
     - name: checkout code
