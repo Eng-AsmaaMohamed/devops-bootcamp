@@ -7,9 +7,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: checkout code
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: say hello
-      run: echo "Hello from GitHub Actions"
+      - name: Say Hello
+        run: echo "Hello from GitHub Actions"
