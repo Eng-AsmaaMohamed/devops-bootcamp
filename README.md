@@ -1,4 +1,4 @@
-# DevOps 30-Day Bootcamp
+# DevOps Bootcamp
 
 A 30-day hands on journey to prepare for a Devops Engineer role.
 
