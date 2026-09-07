@@ -1,4 +1,0 @@
-services:
-  node-app:
-    environment:
-      - NODE_ENV=production

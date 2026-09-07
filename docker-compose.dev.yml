@@ -1,0 +1,18 @@
+# Purpose: Define development-specific settings for the Docker Compose environment.
+
+services:
+
+  node-app:
+
+    # Set the application environment to development
+    environment:
+      - NODE_ENV=development
+
+    # Mount the local source code into the container.
+    # "ro" means read-only, so the container can read the files but cannot modify them.
+    volumes:
+      - ./src:/app/src:ro
+
+
+#TO RUN
+#docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build

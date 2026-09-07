@@ -1,0 +1,5 @@
+# Purpose: Prevent local dependencies and sensitive environment variables from being committed to Git.
+#Don't upload these files to GitHub.
+
+node_modules/
+.env

@@ -1,0 +1,8 @@
+# Purpose: Exclude unnecessary and sensitive files from the Docker build context.
+# Don't send these files to Docker during build.
+
+node_modules
+.env
+.git
+.gitignore
+

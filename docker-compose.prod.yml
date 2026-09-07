@@ -1,0 +1,9 @@
+# Purpose: Define production-specific settings for the Docker Compose environment.
+
+services:
+
+  node-app:
+
+    # Set the application environment to production
+    environment:
+      - NODE_ENV=production

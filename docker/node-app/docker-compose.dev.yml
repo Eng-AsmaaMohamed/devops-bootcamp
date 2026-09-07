@@ -1,6 +1,0 @@
-services:
-  node-app:
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - ./src:/app/src:ro
