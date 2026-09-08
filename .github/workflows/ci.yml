@@ -1,27 +1,39 @@
 # Name of the GitHub Actions workflow
-name: CI
+name: CI/CD
 
 # Define when the workflow should run
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
-            
+
   pull_request:
     branches:
       - main
-            
+
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   # Job name: build
   build:
     runs-on: ubuntu-latest
 
     steps:
-        # Step 1: Download the repository code into the runner
+      # Step 1: Download the repository code into the runner
       - name: Checkout repository
         uses: actions/checkout@v4
 
-        # Step 2: Install and configure Node.js
+      # Step 2: Authenticate with GitHub Container Registry (GHCR)
+      - name: Log in to GHCR
+        uses: docker/login-action@v4  # Use Docker's official GitHub Action for logging into a container registry
+        with:                         # Configuration values passed to the login action
+          registry: ghcr.io                # Specify GitHub Container Registry as the registry
+          username: ${{ github.actor }}    # Use the GitHub username/account that triggered the workflow
+          password: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's automatically generated token for authentication
+
+        # Step 3: Install and configure Node.js
       - name: set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -29,10 +41,19 @@ jobs:
           # Enable npm dependency caching to speed up future runs
           cache: npm
 
-        # Step 3: Install dependencies exactly as defined in package-lock.json
+        # Step 4: Install dependencies exactly as defined in package-lock.json
       - name: Install dependencies
         run: npm ci
 
-        # Step 4: Build the Docker image
-      - name: Build Docker image
-        run: docker build -t node-app:ci .
+        # Step 5: Build the Docker image and push it to GitHub Container Registry
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v7
+        with:
+          # Use the repository directory as the Docker build context
+          context: .
+
+          # Push the image to the configured container registry after building
+          push: true
+
+          # Define the registry, owner, image name, and image tag
+          tags: ghcr.io/${{ github.repository_owner }}/node-app:latest
