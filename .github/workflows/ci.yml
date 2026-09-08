@@ -27,11 +27,11 @@ jobs:
 
       # Step 2: Authenticate with GitHub Container Registry (GHCR)
       - name: Log in to GHCR
-        uses: docker/login-action@v4  # Use Docker's official GitHub Action for logging into a container registry
-        with:                         # Configuration values passed to the login action
-          registry: ghcr.io                # Specify GitHub Container Registry as the registry
-          username: ${{ github.actor }}    # Use the GitHub username/account that triggered the workflow
-          password: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub's automatically generated token for authentication
+        uses: docker/login-action@v4 # Use Docker's official GitHub Action for logging into a container registry
+        with: # Configuration values passed to the login action
+          registry: ghcr.io # Specify GitHub Container Registry as the registry
+          username: ${{ github.actor }} # Use the GitHub username/account that triggered the workflow
+          password: ${{ secrets.GITHUB_TOKEN }} # Use GitHub's automatically generated token for authentication
 
         # Step 3: Install and configure Node.js
       - name: set up Node.js
@@ -56,4 +56,4 @@ jobs:
           push: true
 
           # Define the registry, owner, image name, and image tag
-          tags: ghcr.io/${{ github.repository_owner }}/node-app:latest
+          tags: ghcr.io/eng-asmaamohamed/node-app:latest
